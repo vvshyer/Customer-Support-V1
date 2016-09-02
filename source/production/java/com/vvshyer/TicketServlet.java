@@ -54,6 +54,10 @@ public class TicketServlet extends HttpServlet
                 this.listTickets(request,response);
                 break;
         }
+        if (request.getSession().getAttribute("username")==null){
+            response.sendRedirect("login");
+            return;
+        }
     }
 
     @Override
@@ -72,6 +76,10 @@ public class TicketServlet extends HttpServlet
             default:
                 response.sendRedirect("tickets");
                 break;
+        }
+        if (request.getSession().getAttribute("username")==null){
+            response.sendRedirect("login");
+            return;
         }
     }
 
@@ -139,7 +147,7 @@ public class TicketServlet extends HttpServlet
             throws ServletException, IOException
     {
         Ticket ticket = new Ticket();
-        ticket.setCustomerName(request.getParameter("customerName"));
+        ticket.setCustomerName((String) request.getSession().getAttribute("username"));
         ticket.setSubject(request.getParameter("subject"));
         ticket.setBody(request.getParameter("body"));
 
