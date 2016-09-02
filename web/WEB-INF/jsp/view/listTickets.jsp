@@ -1,6 +1,5 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="com.vvshyer.Ticket" %>
-<%@ page import="java.util.StringJoiner" %>
 <%
     @SuppressWarnings("unchecked")
     Map<Integer, Ticket> ticketDatabase = (Map<Integer, Ticket>) request.getAttribute("ticketDatabase");
@@ -11,6 +10,7 @@
         <title>Customer Support</title>
     </head>
     <body>
+        <a href="<c:url value="/login?logout"/>">Logout</a>
         <h2>Tickets</h2>
         <a href="<c:url value="/tickets"><c:param name="action" value="create"/> </c:url> ">Create Ticket</a><br/><br/>
         <%

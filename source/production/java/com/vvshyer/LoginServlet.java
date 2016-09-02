@@ -48,6 +48,15 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        if (request.getParameter("logout")!=null){
+            session.invalidate();
+            response.sendRedirect("login");
+            return;
+        }else if (session.getAttribute("username")!=null){
+            response.sendRedirect("tickets");
+            return;
+        }
+
         if (session.getAttribute("username") != null){
             response.sendRedirect("tickets");
             return;
